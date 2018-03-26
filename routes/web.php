@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test/connection', function() {
+    $clearDB_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    $dbhost = $clearDB_url["host"];
+    $dbuser = $clearDB_url["user"];
+    $dbpass = $clearDB_url["pass"];
+    $dbname = substr($clearDB_url["path"], 1);
+
+    dd('host:' . $dbhost . ' <br /> dbname:' . $dbname . '<br /> dbuser:' . $dbuser . '<br />pass:' .$dbpass);
+});
